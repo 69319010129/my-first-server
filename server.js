@@ -303,7 +303,43 @@ btn.addEventListener("click", (e) => {
     }, 3000);
 });
 </script>
+<script>
+const btn = document.querySelector(".btn");
 
+btn.addEventListener("click", function(e){
+    e.preventDefault();
+
+    // รอ 2 วินาที
+    setTimeout(() => {
+
+        // ตัวอย่างเอฟเฟกต์
+        for(let i = 0; i < 30; i++){
+
+            const effect = document.createElement("div");
+            effect.innerHTML = ["🍪","⭐","✨","🍬","💖"][Math.floor(Math.random()*5)];
+            effect.style.position = "fixed";
+            effect.style.left = Math.random()*100 + "vw";
+            effect.style.top = "100vh";
+            effect.style.fontSize = (20 + Math.random()*30) + "px";
+            effect.style.transition = "3s linear";
+
+            document.body.appendChild(effect);
+
+            setTimeout(() => {
+                effect.style.top = "-100px";
+                effect.style.transform = `rotate(${Math.random()*720}deg)`;
+                effect.style.opacity = "0";
+            }, 50);
+
+            setTimeout(() => {
+                effect.remove();
+            }, 3100);
+        }
+
+    }, 2000); // 2000 = 2 วินาที
+
+});
+</script>
 </body>
 <body>
 
