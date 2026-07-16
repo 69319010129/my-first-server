@@ -1,11 +1,20 @@
-res.end(`
-<!DOCTYPE html>
+const http = require("http");
+
+const PORT = process.env.PORT || 3000;
+
+const server = http.createServer((req, res) => {
+
+    res.writeHead(200, {
+        "Content-Type": "text/html; charset=utf-8"
+    });
+
+    res.end(`<!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cookie Run Theme</title>
+<title>Cookie Run Server</title>
 
 <style>
 
@@ -18,11 +27,11 @@ font-family:Arial,sans-serif;
 
 body{
 height:100vh;
+overflow:hidden;
 display:flex;
 justify-content:center;
 align-items:center;
-overflow:hidden;
-background:linear-gradient(-45deg,#FFD166,#FFB347,#FF8FAB,#A0E7E5,#B5EAD7);
+background:linear-gradient(-45deg,#FFD166,#FFB347,#FF8FAB,#8EC5FC,#A8E6CF);
 background-size:400% 400%;
 animation:bg 12s ease infinite;
 }
@@ -34,52 +43,30 @@ animation:bg 12s ease infinite;
 }
 
 .card{
-width:720px;
-background:rgba(255,255,255,.9);
-backdrop-filter:blur(10px);
+width:700px;
+background:rgba(255,255,255,.92);
 padding:40px;
-border-radius:35px;
+border-radius:30px;
 text-align:center;
-box-shadow:0 20px 50px rgba(0,0,0,.3);
+box-shadow:0 20px 40px rgba(0,0,0,.25);
 border:8px solid #ffb347;
-animation:popup 1s;
+animation:show .8s;
 }
 
-@keyframes popup{
+@keyframes show{
 from{
-transform:scale(.6);
 opacity:0;
+transform:scale(.7);
 }
 to{
-transform:scale(1);
 opacity:1;
+transform:scale(1);
 }
 }
 
-h1{
-font-size:50px;
-background:linear-gradient(to right,#ff6b00,#ff0080,#7b2ff7);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-margin-bottom:20px;
-}
-
-h2{
-font-size:30px;
-color:#7b4b2a;
-margin-bottom:20px;
-}
-
-p{
-font-size:22px;
-line-height:1.8;
-color:#555;
-}
-
-.cookie{
-font-size:100px;
+.logo{
+font-size:90px;
 animation:spin 6s linear infinite;
-margin-bottom:20px;
 }
 
 @keyframes spin{
@@ -88,33 +75,51 @@ transform:rotate(360deg);
 }
 }
 
+h1{
+margin-top:15px;
+font-size:48px;
+background:linear-gradient(to right,#ff6600,#ff1493,#7b2ff7);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+h2{
+margin:15px;
+color:#7b4b2a;
+}
+
+p{
+font-size:22px;
+line-height:1.8;
+color:#444;
+}
+
 .btn{
 display:inline-block;
-margin-top:30px;
-padding:18px 45px;
-font-size:22px;
-background:linear-gradient(to right,#ff9a44,#ff5f6d);
+margin-top:25px;
+padding:16px 45px;
+background:linear-gradient(90deg,#ff7b00,#ff4081);
 color:white;
-border-radius:50px;
 text-decoration:none;
+border-radius:50px;
+font-size:22px;
 transition:.3s;
-box-shadow:0 10px 20px rgba(0,0,0,.25);
 }
 
 .btn:hover{
-transform:translateY(-8px) scale(1.08);
-box-shadow:0 15px 30px rgba(0,0,0,.3);
+transform:scale(1.08);
+box-shadow:0 10px 20px rgba(0,0,0,.25);
 }
 
-.float{
+.item{
 position:absolute;
 font-size:40px;
-animation:float 7s linear infinite;
+animation:float 10s linear infinite;
 }
 
 @keyframes float{
 0%{
-transform:translateY(120vh) rotate(0deg);
+transform:translateY(110vh) rotate(0deg);
 opacity:0;
 }
 20%{
@@ -126,12 +131,12 @@ opacity:0;
 }
 }
 
-.f1{left:5%;animation-delay:0s;}
-.f2{left:20%;animation-delay:2s;}
-.f3{left:40%;animation-delay:4s;}
-.f4{left:60%;animation-delay:1s;}
-.f5{left:80%;animation-delay:3s;}
-.f6{left:92%;animation-delay:5s;}
+.i1{left:5%;animation-delay:0s;}
+.i2{left:18%;animation-delay:2s;}
+.i3{left:35%;animation-delay:4s;}
+.i4{left:55%;animation-delay:1s;}
+.i5{left:75%;animation-delay:3s;}
+.i6{left:90%;animation-delay:5s;}
 
 </style>
 
@@ -139,33 +144,38 @@ opacity:0;
 
 <body>
 
-<div class="float f1">🍪</div>
-<div class="float f2">🍩</div>
-<div class="float f3">🍬</div>
-<div class="float f4">🧁</div>
-<div class="float f5">⭐</div>
-<div class="float f6">✨</div>
+<div class="item i1">🍪</div>
+<div class="item i2">🍩</div>
+<div class="item i3">🍬</div>
+<div class="item i4">🧁</div>
+<div class="item i5">⭐</div>
+<div class="item i6">✨</div>
 
 <div class="card">
 
-<div class="cookie">🍪</div>
+<div class="logo">🍪</div>
 
-<h1>COOKIE RUN WEB SERVER</h1>
+<h1>COOKIE RUN</h1>
 
-<h2>🎉 Welcome 🎉</h2>
+<h2>Welcome to My Server</h2>
 
 <p>
-สวัสดีครับ<br><br>
-
-<b>นาย จิรพนธ์ ผาสุข</b><br>
-
+สวัสดีครับ 👋
+<br><br>
+นาย จิรพนธ์ ผาสุข
+<br>
 รหัสนักศึกษา 69319010129
 </p>
 
-<a class="btn">🍪 Start Adventure</a>
+<a class="btn" href="#">🍪 Start Adventure</a>
 
 </div>
 
 </body>
-</html>
-`);
+</html>`);
+
+});
+
+server.listen(PORT, () => {
+    console.log("Server is running at http://localhost:" + PORT);
+});
