@@ -283,7 +283,28 @@ transform:translate(900px,500px);
 </style>
 
 </head>
+<script>
+// JavaScript ของคุณจะอยู่ตรงนี้
 
+// ตัวอย่าง
+const btn = document.querySelector(".btn");
+
+btn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const cookie = document.createElement("div");
+    cookie.innerHTML = "🍪";
+    cookie.className = "item";
+
+    document.body.appendChild(cookie);
+
+    setTimeout(() => {
+        cookie.remove();
+    }, 3000);
+});
+</script>
+
+</body>
 <body>
 
 <div class="item i1">🍪</div>
