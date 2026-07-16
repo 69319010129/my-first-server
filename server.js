@@ -1,23 +1,132 @@
-// 1. เรียกใชงาน Module ที่ชื่อวา 'http' ซึ่งเปนระบบพื้นฐานของ Node.js สําหรับทําเซิรฟ เวอร
- const http = require('http');
+res.end(`
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cookie Run Server</title>
 
- // 2. กําหนดชองทาง (Port) ที่เซิรฟเวอรจะใชสื่อสาร โดยใหใชของที่ Cloud กําหนดมา(process.env.PORT) ถาไมมีใหใช 3000
- const port = process.env.PORT || 3000;
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Trebuchet MS',sans-serif;
+}
 
- // 3. สรางเครื่องแมขาย (Server) ที่คอยรับคําขอ (req) และตอบกลับ (res)
- const server = http.createServer((req, res) => {
+body{
+    background:linear-gradient(135deg,#ffe5b4,#ffd6ec,#d8f3ff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
 
- // 3.1 ตั้งรหัสสถานะ 200 หมายถึง "ทํางานสําเร็จ (OK)"
- res.statusCode = 200;
+.card{
+    width:700px;
+    background:rgba(255,255,255,.95);
+    border-radius:30px;
+    padding:40px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,.2);
+    border:8px solid #ffb347;
+}
 
- // 3.2 บอกเบราวเซอรของผูใชวา สิ่งที่สงกลับไปคือไฟลขอความแบบ HTML และรองรับภาษาไทย (utf-8)
- res.setHeader('Content-Type', 'text/html; charset=utf-8');
+h1{
+    color:#ff7b00;
+    font-size:45px;
+    margin-bottom:15px;
+    text-shadow:2px 2px #fff;
+}
 
-// 3.3 สงขอมูลหนาเว็บกลับไปหาผูใช (*** ใหนักศึกษาแกชื่อ-นามสกุลตรงนี้ ***)
-res.end('<h1>สวัสดีครับ! นี่คือ Web Server ของ นาย จิรพนธ์ ผาสุข รหัสนักศึกษา 69319010129 </h1><p>เครื่องแม่ข่ายทํางานปกติบนระบบ Railway แล้วครับผม!</p>');
- });
+h2{
+    color:#7b4b2a;
+    margin-bottom:20px;
+}
 
- // 4. สั่งใหเซิรฟเวอรเริ่มตนเปดรับฟงการเชื่อมตอตาม Port ที่กําหนดไว
- server.listen(port, () => {
- console.log(`Server is running! เครื่องแม่ข่ายเปิดทํางานแล้วที่ช่องทาง: ${port}`);
- });
+p{
+    color:#555;
+    font-size:20px;
+    line-height:1.8;
+}
+
+.cookie{
+    font-size:90px;
+    animation:spin 6s linear infinite;
+    margin-bottom:20px;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 40px;
+    background:#ff8fab;
+    color:white;
+    text-decoration:none;
+    border-radius:50px;
+    font-size:20px;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#ff5d8f;
+    transform:scale(1.08);
+}
+
+.star{
+    position:absolute;
+    color:white;
+    font-size:25px;
+    animation:float 5s infinite;
+}
+
+.star:nth-child(1){top:10%;left:8%;}
+.star:nth-child(2){top:20%;right:12%;}
+.star:nth-child(3){bottom:15%;left:15%;}
+.star:nth-child(4){bottom:20%;right:10%;}
+
+@keyframes spin{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-20px);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="star">⭐</div>
+<div class="star">🍭</div>
+<div class="star">✨</div>
+<div class="star">🍬</div>
+
+<div class="card">
+
+<div class="cookie">🍪</div>
+
+<h1>Cookie Run Web Server</h1>
+
+<h2>ยินดีต้อนรับ</h2>
+
+<p>
+สวัสดีครับ 👋<br><br>
+
+นี่คือ Web Server ของ<br>
+<b>นาย จิรพนธ์ ผาสุข</b><br>
+รหัสนักศึกษา <b>69319010129</b>
+</p>
+
+<a class="btn" href="#">
+🍪 Start Adventure
+</a>
+
+</div>
+
+</body>
+</html>
+`);
