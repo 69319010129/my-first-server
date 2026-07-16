@@ -11,7 +11,7 @@ const server = http.createServer((req, res) => {
     res.end(`<!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"> ขอให้มีเอกเฟกเพิ่มขึ้นและสวยมากขึ้น ต่อท้าย 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Cookie Run Server</title>
@@ -138,6 +138,148 @@ opacity:0;
 .i5{left:75%;animation-delay:3s;}
 .i6{left:90%;animation-delay:5s;}
 
+/* Glow */
+.card{
+position:relative;
+overflow:hidden;
+}
+
+.card::before{
+content:"";
+position:absolute;
+width:250%;
+height:250%;
+left:-75%;
+top:-75%;
+background:conic-gradient(
+transparent,
+rgba(255,255,255,.7),
+transparent,
+rgba(255,215,0,.5),
+transparent
+);
+animation:borderLight 8s linear infinite;
+}
+
+.card::after{
+content:"";
+position:absolute;
+inset:8px;
+background:rgba(255,255,255,.95);
+border-radius:22px;
+z-index:0;
+}
+
+.card>*{
+position:relative;
+z-index:2;
+}
+
+/* Rainbow title */
+h1{
+animation:titleGlow 2s ease-in-out infinite alternate;
+text-shadow:
+0 0 10px #fff,
+0 0 20px #ff9,
+0 0 35px #ff66aa;
+}
+
+/* Button pulse */
+.btn{
+animation:pulse 2s infinite;
+}
+
+/* Sparkles */
+.spark{
+position:absolute;
+font-size:22px;
+pointer-events:none;
+animation:spark 4s linear infinite;
+}
+
+/* Bubble */
+.bubble{
+position:absolute;
+width:18px;
+height:18px;
+border-radius:50%;
+background:rgba(255,255,255,.45);
+backdrop-filter:blur(2px);
+animation:bubble 8s linear infinite;
+}
+
+/* Shine */
+.shine{
+position:absolute;
+width:120px;
+height:120px;
+background:radial-gradient(circle,#fff,transparent 70%);
+opacity:.4;
+border-radius:50%;
+animation:shine 5s ease-in-out infinite;
+}
+
+@keyframes pulse{
+0%,100%{
+transform:scale(1);
+}
+50%{
+transform:scale(1.08);
+box-shadow:0 0 25px #ff9;
+}
+}
+
+@keyframes titleGlow{
+from{
+filter:drop-shadow(0 0 8px gold);
+}
+to{
+filter:drop-shadow(0 0 25px hotpink);
+}
+}
+
+@keyframes borderLight{
+100%{
+transform:rotate(360deg);
+}
+}
+
+@keyframes spark{
+0%{
+transform:translateY(100vh) rotate(0deg);
+opacity:0;
+}
+20%{
+opacity:1;
+}
+100%{
+transform:translateY(-100px) rotate(720deg);
+opacity:0;
+}
+}
+
+@keyframes bubble{
+0%{
+transform:translateY(100vh) scale(.5);
+opacity:0;
+}
+20%{
+opacity:.6;
+}
+100%{
+transform:translateY(-120px) scale(1.8);
+opacity:0;
+}
+}
+
+@keyframes shine{
+0%{
+transform:translate(-200px,-150px);
+}
+100%{
+transform:translate(900px,500px);
+}
+}
 </style>
 
 </head>
@@ -170,7 +312,25 @@ opacity:0;
 <a class="btn" href="#">🍪 Start Adventure</a>
 
 </div>
+<!-- Sparkles -->
+<div class="spark" style="left:5%;animation-delay:0s;">✨</div>
+<div class="spark" style="left:15%;animation-delay:1s;">⭐</div>
+<div class="spark" style="left:28%;animation-delay:2s;">💖</div>
+<div class="spark" style="left:42%;animation-delay:3s;">✨</div>
+<div class="spark" style="left:55%;animation-delay:1.5s;">⭐</div>
+<div class="spark" style="left:68%;animation-delay:4s;">💎</div>
+<div class="spark" style="left:82%;animation-delay:2.5s;">✨</div>
+<div class="spark" style="left:93%;animation-delay:5s;">⭐</div>
 
+<!-- Bubble -->
+<div class="bubble" style="left:10%;animation-delay:0s;"></div>
+<div class="bubble" style="left:25%;animation-delay:2s;"></div>
+<div class="bubble" style="left:45%;animation-delay:4s;"></div>
+<div class="bubble" style="left:70%;animation-delay:1s;"></div>
+<div class="bubble" style="left:90%;animation-delay:3s;"></div>
+
+<!-- Shine -->
+<div class="shine"></div>
 </body>
 </html>`);
 
@@ -178,150 +338,4 @@ opacity:0;
 
 server.listen(PORT, () => {
     console.log("Server is running at http://localhost:" + PORT);
-});/* ===== Card ลอย ===== */
-.card{
-animation:show .8s, floating 4s ease-in-out infinite;
-position:relative;
-overflow:hidden;
-}
-
-@keyframes floating{
-0%,100%{
-transform:translateY(0px);
-}
-50%{
-transform:translateY(-12px);
-}
-}
-
-/* ===== Glow รอบ Card ===== */
-.card::before{
-content:"";
-position:absolute;
-top:-50%;
-left:-50%;
-width:200%;
-height:200%;
-background:
-radial-gradient(circle,#fff6 0%,transparent 60%);
-animation:rotateGlow 10s linear infinite;
-pointer-events:none;
-}
-
-@keyframes rotateGlow{
-100%{
-transform:rotate(360deg);
-}
-}
-
-/* ===== ตัวหนังสือวิบวับ ===== */
-h1{
-animation:textGlow 2s infinite alternate;
-}
-
-@keyframes textGlow{
-from{
-filter:drop-shadow(0 0 5px #fff);
-}
-to{
-filter:drop-shadow(0 0 25px gold);
-}
-}
-
-/* ===== ปุ่ม Shine ===== */
-.btn{
-position:relative;
-overflow:hidden;
-}
-
-.btn::before{
-content:"";
-position:absolute;
-top:0;
-left:-120%;
-width:60%;
-height:100%;
-background:rgba(255,255,255,.6);
-transform:skewX(-25deg);
-animation:shine 2.5s infinite;
-}
-
-@keyframes shine{
-100%{
-left:180%;
-}
-}
-
-/* ===== ดาวกระพริบ ===== */
-.star{
-position:absolute;
-color:white;
-font-size:18px;
-animation:blink 2s infinite;
-}
-
-@keyframes blink{
-0%,100%{
-opacity:.2;
-transform:scale(.7);
-}
-50%{
-opacity:1;
-transform:scale(1.5);
-}
-}
-
-/* ===== Bubble ===== */
-.bubble{
-position:absolute;
-bottom:-100px;
-width:25px;
-height:25px;
-border-radius:50%;
-background:rgba(255,255,255,.4);
-backdrop-filter:blur(4px);
-animation:bubble 10s linear infinite;
-}
-
-@keyframes bubble{
-0%{
-transform:translateY(0) scale(.5);
-opacity:0;
-}
-20%{
-opacity:1;
-}
-100%{
-transform:translateY(-120vh) scale(1.5);
-opacity:0;
-}
-}
-
-/* ===== Logo เด้ง ===== */
-.logo{
-animation:bounce 2s infinite;
-}
-
-@keyframes bounce{
-0%,100%{
-transform:translateY(0);
-}
-50%{
-transform:translateY(-15px);
-}
-}
-
-/* ===== Cookie หมุนและเด้ง ===== */
-.item{
-animation:float 10s linear infinite,
-wiggle 2s ease-in-out infinite;
-}
-
-@keyframes wiggle{
-0%,100%{
-transform:rotate(-10deg);
-}
-50%{
-transform:rotate(10deg);
-}
-}
+});
