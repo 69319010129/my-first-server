@@ -11,7 +11,7 @@ const server = http.createServer((req, res) => {
     res.end(`<!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"> ขอให้มีเอกเฟกเพิ่มขึ้นและสวยมากขึ้น ต่อท้าย 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Cookie Run Server</title>
@@ -137,210 +137,112 @@ opacity:0;
 .i4{left:55%;animation-delay:1s;}
 .i5{left:75%;animation-delay:3s;}
 .i6{left:90%;animation-delay:5s;}
+/* ===== Lightning Effect ===== */
 
-/* Glow */
-.card{
-position:relative;
-overflow:hidden;
-}
-
-.card::before{
-content:"";
+.lightning{
 position:absolute;
-width:250%;
-height:250%;
-left:-75%;
-top:-75%;
-background:conic-gradient(
-transparent,
-rgba(255,255,255,.7),
-transparent,
-rgba(255,215,0,.5),
-transparent
+top:-100vh;
+left:50%;
+width:6px;
+height:120vh;
+transform:translateX(-50%);
+background:linear-gradient(
+to bottom,
+rgba(255,255,255,0),
+#ffffff,
+#8fd3ff,
+#ffffff,
+rgba(255,255,255,0)
 );
-animation:borderLight 8s linear infinite;
+filter:drop-shadow(0 0 20px #fff)
+drop-shadow(0 0 50px #6ec6ff)
+drop-shadow(0 0 90px #ffffff);
+opacity:0;
+animation:lightning 5s infinite;
+z-index:999;
 }
 
-.card::after{
+.lightning::before,
+.lightning::after{
 content:"";
 position:absolute;
-inset:8px;
-background:rgba(255,255,255,.95);
-border-radius:22px;
-z-index:0;
+background:white;
+width:6px;
+border-radius:20px;
 }
 
-.card>*{
-position:relative;
-z-index:2;
+.lightning::before{
+height:180px;
+left:-25px;
+top:180px;
+transform:rotate(35deg);
 }
 
-/* Rainbow title */
-h1{
-animation:titleGlow 2s ease-in-out infinite alternate;
-text-shadow:
-0 0 10px #fff,
-0 0 20px #ff9,
-0 0 35px #ff66aa;
+.lightning::after{
+height:160px;
+left:20px;
+top:330px;
+transform:rotate(-30deg);
 }
 
-/* Button pulse */
-.btn{
-animation:pulse 2s infinite;
-}
-
-/* Sparkles */
-.spark{
-position:absolute;
-font-size:22px;
+.flash{
+position:fixed;
+inset:0;
+background:white;
+opacity:0;
 pointer-events:none;
-animation:spark 4s linear infinite;
+animation:flash 5s infinite;
+z-index:998;
 }
 
-/* Bubble */
-.bubble{
-position:absolute;
-width:18px;
-height:18px;
-border-radius:50%;
-background:rgba(255,255,255,.45);
-backdrop-filter:blur(2px);
-animation:bubble 8s linear infinite;
-}
-
-/* Shine */
-.shine{
-position:absolute;
-width:120px;
-height:120px;
-background:radial-gradient(circle,#fff,transparent 70%);
-opacity:.4;
-border-radius:50%;
-animation:shine 5s ease-in-out infinite;
-}
-
-@keyframes pulse{
-0%,100%{
-transform:scale(1);
-}
-50%{
-transform:scale(1.08);
-box-shadow:0 0 25px #ff9;
-}
-}
-
-@keyframes titleGlow{
-from{
-filter:drop-shadow(0 0 8px gold);
-}
-to{
-filter:drop-shadow(0 0 25px hotpink);
-}
-}
-
-@keyframes borderLight{
-100%{
-transform:rotate(360deg);
-}
-}
-
-@keyframes spark{
-0%{
-transform:translateY(100vh) rotate(0deg);
+@keyframes lightning{
+0%,82%,100%{
 opacity:0;
 }
-20%{
+
+84%{
 opacity:1;
 }
-100%{
-transform:translateY(-100px) rotate(720deg);
+
+85%{
+opacity:.2;
+}
+
+86%{
+opacity:1;
+}
+
+87%{
 opacity:0;
 }
 }
 
-@keyframes bubble{
-0%{
-transform:translateY(100vh) scale(.5);
+@keyframes flash{
+0%,82%,100%{
 opacity:0;
-}
-20%{
-opacity:.6;
-}
-100%{
-transform:translateY(-120px) scale(1.8);
-opacity:0;
-}
 }
 
-@keyframes shine{
-0%{
-transform:translate(-200px,-150px);
+84%{
+opacity:.55;
 }
-100%{
-transform:translate(900px,500px);
+
+85%{
+opacity:.15;
+}
+
+86%{
+opacity:.7;
+}
+
+87%{
+opacity:0;
 }
 }
 </style>
 
 </head>
-<script>
-// JavaScript ของคุณจะอยู่ตรงนี้
-
-// ตัวอย่าง
-const btn = document.querySelector(".btn");
-
-btn.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    const cookie = document.createElement("div");
-    cookie.innerHTML = "🍪";
-    cookie.className = "item";
-
-    document.body.appendChild(cookie);
-
-    setTimeout(() => {
-        cookie.remove();
-    }, 3000);
-});
-</script>
-<script>
-const btn = document.querySelector(".btn");
-
-btn.addEventListener("click", function(e){
-    e.preventDefault();
-
-    // รอ 2 วินาที
-    setTimeout(() => {
-
-        // ตัวอย่างเอฟเฟกต์
-        for(let i = 0; i < 30; i++){
-
-            const effect = document.createElement("div");
-            effect.innerHTML = ["🍪","⭐","✨","🍬","💖"][Math.floor(Math.random()*5)];
-            effect.style.position = "fixed";
-            effect.style.left = Math.random()*100 + "vw";
-            effect.style.top = "100vh";
-            effect.style.fontSize = (20 + Math.random()*30) + "px";
-            effect.style.transition = "3s linear";
-
-            document.body.appendChild(effect);
-
-            setTimeout(() => {
-                effect.style.top = "-100px";
-                effect.style.transform = `rotate(${Math.random()*720}deg)`;
-                effect.style.opacity = "0";
-            }, 50);
-
-            setTimeout(() => {
-                effect.remove();
-            }, 3100);
-        }
-
-    }, 2000); // 2000 = 2 วินาที
-
-});
-</script>
-</body>
+<div class="flash"></div>
+<div class="lightning"></div>
 <body>
 
 <div class="item i1">🍪</div>
@@ -369,25 +271,7 @@ btn.addEventListener("click", function(e){
 <a class="btn" href="#">🍪 Start Adventure</a>
 
 </div>
-<!-- Sparkles -->
-<div class="spark" style="left:5%;animation-delay:0s;">✨</div>
-<div class="spark" style="left:15%;animation-delay:1s;">⭐</div>
-<div class="spark" style="left:28%;animation-delay:2s;">💖</div>
-<div class="spark" style="left:42%;animation-delay:3s;">✨</div>
-<div class="spark" style="left:55%;animation-delay:1.5s;">⭐</div>
-<div class="spark" style="left:68%;animation-delay:4s;">💎</div>
-<div class="spark" style="left:82%;animation-delay:2.5s;">✨</div>
-<div class="spark" style="left:93%;animation-delay:5s;">⭐</div>
 
-<!-- Bubble -->
-<div class="bubble" style="left:10%;animation-delay:0s;"></div>
-<div class="bubble" style="left:25%;animation-delay:2s;"></div>
-<div class="bubble" style="left:45%;animation-delay:4s;"></div>
-<div class="bubble" style="left:70%;animation-delay:1s;"></div>
-<div class="bubble" style="left:90%;animation-delay:3s;"></div>
-
-<!-- Shine -->
-<div class="shine"></div>
 </body>
 </html>`);
 
