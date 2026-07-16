@@ -1,6 +1,7 @@
 const http = require("http");
 
-const PORT = process.env.PORT || 3000;
+// เปลี่ยนมาใช้พอร์ต 8080 เพื่อลดโอกาสชนกับโปรแกรมอื่นในคอมพิวเตอร์
+const PORT = process.env.PORT || 8080;
 
 const server = http.createServer((req, res) => {
 
@@ -81,4 +82,4 @@ transform:translateY(0);
 .logo{
 font-size:90px;
 margin-bottom: 10px;
-filter: drop-shadow(0
+filter: drop-shadow(0 5px 10px rgba(0,0,0,0.
