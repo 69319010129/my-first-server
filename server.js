@@ -11,7 +11,7 @@ const server = http.createServer((req, res) => {
     res.end(`<!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8"> ขอให้มีเอกเฟกเพิ่มขึ้นและสวยมากขึ้น ต่อท้าย 
+<meta charset="UTF-8">  
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Cookie Run Server</title>
@@ -137,112 +137,11 @@ opacity:0;
 .i4{left:55%;animation-delay:1s;}
 .i5{left:75%;animation-delay:3s;}
 .i6{left:90%;animation-delay:5s;}
-/* ===== Lightning Effect ===== */
 
-.lightning{
-position:absolute;
-top:-100vh;
-left:50%;
-width:6px;
-height:120vh;
-transform:translateX(-50%);
-background:linear-gradient(
-to bottom,
-rgba(255,255,255,0),
-#ffffff,
-#8fd3ff,
-#ffffff,
-rgba(255,255,255,0)
-);
-filter:drop-shadow(0 0 20px #fff)
-drop-shadow(0 0 50px #6ec6ff)
-drop-shadow(0 0 90px #ffffff);
-opacity:0;
-animation:lightning 5s infinite;
-z-index:999;
-}
-
-.lightning::before,
-.lightning::after{
-content:"";
-position:absolute;
-background:white;
-width:6px;
-border-radius:20px;
-}
-
-.lightning::before{
-height:180px;
-left:-25px;
-top:180px;
-transform:rotate(35deg);
-}
-
-.lightning::after{
-height:160px;
-left:20px;
-top:330px;
-transform:rotate(-30deg);
-}
-
-.flash{
-position:fixed;
-inset:0;
-background:white;
-opacity:0;
-pointer-events:none;
-animation:flash 5s infinite;
-z-index:998;
-}
-
-@keyframes lightning{
-0%,82%,100%{
-opacity:0;
-}
-
-84%{
-opacity:1;
-}
-
-85%{
-opacity:.2;
-}
-
-86%{
-opacity:1;
-}
-
-87%{
-opacity:0;
-}
-}
-
-@keyframes flash{
-0%,82%,100%{
-opacity:0;
-}
-
-84%{
-opacity:.55;
-}
-
-85%{
-opacity:.15;
-}
-
-86%{
-opacity:.7;
-}
-
-87%{
-opacity:0;
-}
-}
 </style>
 
 </head>
-<div class="flash"></div>
-<div class="lightning"></div>
+
 <body>
 
 <div class="item i1">🍪</div>
