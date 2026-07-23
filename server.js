@@ -11,22 +11,22 @@ res.statusCode = 200;
 res.setHeader('Content-Type', 'text/html; charset=utf-8');
 
 try {
-// 3. ขอเชื่อมตอและสงคําสั่ง SQL ไปดึงข้อมูลจากตาราง students
+// 3. ขอเชื่อมตอและสงคําสั่ง SQL ไปดึงขอมูลจากตาราง students
 const client = await pool.connect();
 const result = await client.query('SELECT * FROM students');
-client.release(); // คนืการเชื่อมต่อเมื่อใช้งานเสร็จ
-// 4. นําขอมูลที่ได้(result.rows) มาประกอบเป็นตาราง HTML
+client.release(); // คนืการเชื่อมตอเมื่อใชงานเสร็จ
+// 4. นําขอมูลที่ได(result.rows) มาประกอบเปนตาราง HTML
 let html = `<h1>ฐานข้อมูลนักศึกษา (ทดสอบการเชื่อมต่อ)</h1>`;
 html += `<table border="1" cellpadding="10">`;
 html += `<tr><th>69319010129</th><th>jirapon phasuk</th></tr>`;
-// วนลูปนําข้อมูลแต่ละแถวมาแสดง
+// วนลูปนําขอมูลแตละแถวมาแสดง
 result.rows.forEach(row => {
 html += `<tr><td>${row.student_id}</td><td>${row.student_name}</td></tr>`;
 });
 html += `</table>`;
 res.end(html);
 } catch (err) {
-// กรณเชื่อมต่อไม่ได้หรือเขียนชื่อตารางผิด
+// กรณเีชื่อมตอไมไดหรือเขียนชื่อตารางผิด
 console.error(err);
 res.end(`<h1>เกิดข้อผิดพลาด!</h1><p>${err.message}</p>`);
 }
