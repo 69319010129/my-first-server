@@ -17,7 +17,7 @@ client.release(); // คนืการเชื่อมตอเมื่�
 // 4. นําขอมูลที่ได(result.rows) มาประกอบเปนตาราง HTML
 let html = `<h1>ฐานขอมูลนักศึกษา (ทดสอบการเชื่อมตอ)</h1>`;
 html += `<table border="1" cellpadding="10">`;
-html += `<tr><th>รหัสนักศึกษา</th><th>ชื่อ-นามสกุล</th></tr>`;
+html += `<tr><th>69319010129</th><th>นาย จิรพนธ์ ผาสุข</th></tr>`;
 // วนลูปนําขอมูลแตละแถวมาแสดง
 result.rows.forEach(row => {
 html += `<tr><td>${row.student_id}</td><td>${row.student_name}</td></tr>`;
