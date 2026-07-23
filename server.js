@@ -1,6 +1,6 @@
-// 1. เรียกใชงาน Pool จากไลบรารี pg สําหรับจัดการการเชื่อมตอฐานขอมูล
+// 1. เรียกใชงาน Pool จากไลบรารี pg สําหรับจัดการการเชื่อมต่อฐานข้อมูล
 const { Pool } = require('pg');
-// 2. ตั้งคาการเชื่อมตอ โดยดึง URL มาจาก Environment Variable ของ Railway
+// 2. ตั้งค่าการเชื่อมตอ โดยดึง URL มาจาก Environment Variable ของ Railway
 const pool = new Pool({
 connectionString: process.env.DATABASE_URL,
 });
@@ -8,16 +8,15 @@ const port = process.env.PORT || 3000;
 const server = http.createServer(async (req, res) => {
 res.statusCode = 200;
 res.setHeader('Content-Type', 'text/html; charset=utf-8');
-
 try {
 // 3. ขอเชื่อมตอและสงคําสั่ง SQL ไปดึงขอมูลจากตาราง students
 const client = await pool.connect();
 const result = await client.query('SELECT * FROM students');
 client.release(); // คนืการเชื่อมตอเมื่อใชงานเสร็จ
-// 4. นําขอมูลที่ได(result.rows) มาประกอบเปนตาราง HTML
+// 4. นําขอมูลที่ได(result.rows) มาประกอบเป็นตาราง HTML
 let html = `<h1>ฐานขอมูลนักศึกษา (ทดสอบการเชื่อมตอ)</h1>`;
 html += `<table border="1" cellpadding="10">`;
-html += `<tr><th>รหัสนักศึกษา</th><th>ชื่อ-นามสกุล</th></tr>`;
+html += `<tr><th>69319010129</th><th>นาย จิรพนธ์ ผาสุข</th></tr>`;
 // วนลูปนําขอมูลแตละแถวมาแสดง
 result.rows.forEach(row => {
 html += `<tr><td>${row.student_id}</td><td>${row.student_name}</td></tr>`;
