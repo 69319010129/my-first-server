@@ -11,9 +11,9 @@ res.statusCode = 200;
 res.setHeader('Content-Type', 'text/html; charset=utf-8');
 
 try {
-// 3. ขอเชื่อมตอและสงคําสั่ง SQL ไปดึงข้อมูลจากตาราง Students
+// 3. ขอเชื่อมตอและสงคําสั่ง SQL ไปดึงข้อมูลจากตาราง students
 const client = await pool.connect();
-const result = await client.query('SELECT * FROM Students');
+const result = await client.query('SELECT * FROM students');
 client.release(); // คนืการเชื่อมต่อเมื่อใช้งานเสร็จ
 // 4. นําขอมูลที่ได้(result.rows) มาประกอบเป็นตาราง HTML
 let html = `<h1>ฐานข้อมูลนักศึกษา (ทดสอบการเชื่อมต่อ)</h1>`;
